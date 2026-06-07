@@ -1,0 +1,45 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+default_platform(:ios)
+
+platform :ios do
+  lane :ui_tests do
+    target_device = "iPhone 17 Pro"
+    target_os     = "latest"
+    xcresult_path = "./fastlane/test_output/ReferenceiOSUITests.test_result.xcresult"
+
+    FileUtils.rm_rf("./test_output")
+
+    begin
+      scan(
+        scheme: "ReferenceiOSUITests",
+        project: "ReferenceiOS.xcodeproj",
+        destination: "platform=iOS Simulator,name=#{target_device},OS=#{target_os}",
+        derived_data_path: "./fastlane/derived_data",
+        result_bundle: true,
+        output_directory: "./fastlane/test_output",
+        clean: true,
+        fail_build: false
+      )
+    ensure
+      xchtmlreport(
+        result_bundle_path: xcresult_path,
+        binary_path: `which xchtmlreport`.strip
+      )
+
+      sh("open ./test_output/index.html") unless ENV["CI"]
+    end
+  end
+end
