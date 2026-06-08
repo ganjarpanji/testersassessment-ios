@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,11 @@
 		94651D792FD1C4140086FFC3 /* BaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D782FD1C4140086FFC3 /* BaseScreen.swift */; };
 		94651D7C2FD1C6410086FFC3 /* UITestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D7B2FD1C6410086FFC3 /* UITestConstants.swift */; };
 		94651D7F2FD1CCF40086FFC3 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D7E2FD1CCF40086FFC3 /* BaseTestCase.swift */; };
+		94651D872FD6EFBA0086FFC3 /* LandingScreenSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D822FD6E8E00086FFC3 /* LandingScreenSnapshotTests.swift */; };
+		94651D8A2FD6F0520086FFC3 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 94651D892FD6F0520086FFC3 /* SnapshotTesting */; };
+		94651D8E2FD712470086FFC3 /* Simulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D8D2FD712470086FFC3 /* Simulator.swift */; };
+		94651D912FD71F9A0086FFC3 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D902FD71F9A0086FFC3 /* XCTestCase+Snapshot.swift */; };
+		94651D942FD72C780086FFC3 /* SnapshotTestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D932FD72C780086FFC3 /* SnapshotTestConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,10 @@
 		94651D782FD1C4140086FFC3 /* BaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
 		94651D7B2FD1C6410086FFC3 /* UITestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestConstants.swift; sourceTree = "<group>"; };
 		94651D7E2FD1CCF40086FFC3 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
+		94651D822FD6E8E00086FFC3 /* LandingScreenSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingScreenSnapshotTests.swift; sourceTree = "<group>"; };
+		94651D8D2FD712470086FFC3 /* Simulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulator.swift; sourceTree = "<group>"; };
+		94651D902FD71F9A0086FFC3 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
+		94651D932FD72C780086FFC3 /* SnapshotTestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTestConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94651D8A2FD6F0520086FFC3 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,9 +97,11 @@
 		05D03C5D224BA0FB005F6F05 = {
 			isa = PBXGroup;
 			children = (
+				94651D8B2FD7120F0086FFC3 /* ReferenceiOSSnapshotTests */,
 				05D03C68224BA0FB005F6F05 /* ReferenceiOS */,
 				05D03C7D224BA0FD005F6F05 /* ReferenceiOSTests */,
 				05D03C88224BA0FD005F6F05 /* ReferenceiOSUITests */,
+				94651D842FD6E9960086FFC3 /* Frameworks */,
 				05D03C67224BA0FB005F6F05 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -162,6 +174,40 @@
 				94651D7E2FD1CCF40086FFC3 /* BaseTestCase.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		94651D842FD6E9960086FFC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94651D8B2FD7120F0086FFC3 /* ReferenceiOSSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				94651D922FD72C640086FFC3 /* Constants */,
+				94651D8C2FD7123B0086FFC3 /* Utils */,
+				94651D822FD6E8E00086FFC3 /* LandingScreenSnapshotTests.swift */,
+			);
+			path = ReferenceiOSSnapshotTests;
+			sourceTree = "<group>";
+		};
+		94651D8C2FD7123B0086FFC3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				94651D8D2FD712470086FFC3 /* Simulator.swift */,
+				94651D902FD71F9A0086FFC3 /* XCTestCase+Snapshot.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		94651D922FD72C640086FFC3 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				94651D932FD72C780086FFC3 /* SnapshotTestConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +298,9 @@
 				Base,
 			);
 			mainGroup = 05D03C5D224BA0FB005F6F05;
+			packageReferences = (
+				94651D882FD6F04D0086FFC3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 05D03C67224BA0FB005F6F05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -305,7 +354,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94651D872FD6EFBA0086FFC3 /* LandingScreenSnapshotTests.swift in Sources */,
 				05D03C9A224BBDC2005F6F05 /* CurrencyHelperTests.swift in Sources */,
+				94651D912FD71F9A0086FFC3 /* XCTestCase+Snapshot.swift in Sources */,
+				94651D942FD72C780086FFC3 /* SnapshotTestConstants.swift in Sources */,
+				94651D8E2FD712470086FFC3 /* Simulator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +532,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = D6XR9PZ28S;
 				INFOPLIST_FILE = ReferenceiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,6 +553,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = D6XR9PZ28S;
 				INFOPLIST_FILE = ReferenceiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,6 +574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8L28AU27D;
 				INFOPLIST_FILE = ReferenceiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,6 +596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8L28AU27D;
 				INFOPLIST_FILE = ReferenceiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -560,11 +617,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8L28AU27D;
 				INFOPLIST_FILE = ReferenceiOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.abnamro.ReferenceiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -580,11 +639,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8L28AU27D;
 				INFOPLIST_FILE = ReferenceiOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.abnamro.ReferenceiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -656,6 +717,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = D6XR9PZ28S;
 				INFOPLIST_FILE = ReferenceiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -676,6 +738,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8L28AU27D;
 				INFOPLIST_FILE = ReferenceiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -696,11 +759,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8L28AU27D;
 				INFOPLIST_FILE = ReferenceiOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.abnamro.ReferenceiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -753,6 +818,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		94651D882FD6F04D0086FFC3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		94651D892FD6F0520086FFC3 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 94651D882FD6F04D0086FFC3 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 05D03C5E224BA0FB005F6F05 /* Project object */;
 }
