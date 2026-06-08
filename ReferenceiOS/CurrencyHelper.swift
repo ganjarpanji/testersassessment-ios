@@ -27,9 +27,20 @@ class CurrencyHelper {
         let fontDynamic = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
         let fontSuper = UIFont(name: "Helvetica", size: superscriptSize) ?? UIFont.systemFont(ofSize: superscriptSize)
         let fontSuperDynamic = UIFontMetrics(forTextStyle: .body).scaledFont(for: fontSuper)
-        let attString = NSMutableAttributedString(string: amount, attributes: [.font:fontDynamic])
         
-        attString.setAttributes([.font:fontSuperDynamic,.baselineOffset: (fontDynamic.pointSize  - fontSuperDynamic.pointSize) - diff], range: NSRange(location: (amount.count - decimalCount), length: decimalCount))
+        // Add .foregroundColor for darkmode
+        let baseAttributes: [NSAttributedString.Key: Any] = [
+            .font: fontDynamic,
+            .foregroundColor: UIColor.label
+        ]
+        let attString = NSMutableAttributedString(string: amount, attributes: baseAttributes)
+        let superAttributes: [NSAttributedString.Key: Any] = [
+            .font: fontSuperDynamic,
+            .baselineOffset: (fontDynamic.pointSize - fontSuperDynamic.pointSize) - diff,
+            .foregroundColor: UIColor.label
+        ]
+        
+        attString.setAttributes(superAttributes, range: NSRange(location: (amount.count - decimalCount), length: decimalCount))
         
         return attString
     }
