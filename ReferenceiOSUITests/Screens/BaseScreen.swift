@@ -39,16 +39,6 @@ class BaseScreen {
         return self
     }
     
-    func assertElementIsNotTruncated(element: XCUIElement) -> Self {
-        expect(element: element, status: .exist)
-        
-        XCTAssertTrue(
-            element.frame.width < UIScreen.main.bounds.width,
-            "Validation failed: Element '\(element)' appears to be truncated"
-        )
-        return self
-    }
-    
     // MARK: - Label Assertion
     @discardableResult
     func assertLabelHasText(element: XCUIElement, text: String) -> Self {

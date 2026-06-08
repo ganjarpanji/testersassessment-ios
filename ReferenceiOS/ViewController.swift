@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     #if DEBUG
-        //Inject amount based on test data
+        // Inject amount based on test data
         func configureForSnapshotTest(with amount: Double) {
             let decimalAmount = Decimal(amount)
             if let formattedAmount = CurrencyHelper.format(amount: decimalAmount as NSDecimalNumber) {

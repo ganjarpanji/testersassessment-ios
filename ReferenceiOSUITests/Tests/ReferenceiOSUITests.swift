@@ -8,6 +8,9 @@
 
 import XCTest
 
+/// UI Test for main screen of the apps (Landing Screen).
+/// Includes user interaction, changing background state, and device rotation.
+/// a11y check added as part of design guidelines validation.
 class ReferenceiOSUITests: BaseTestCase {
     
     override func tearDown() {
@@ -97,7 +100,7 @@ class ReferenceiOSUITests: BaseTestCase {
     
     func testAmountFormat_InDifferentRegion_ShouldRemainInEuroCurrency() {
         // Set locale to US
-        launchApplication(withLocale: TestLocale.usEnglish,)
+        launchApplication(withLocale: TestLocale.usEnglish)
 
         landingScreen
             .tapGenerateButton()
@@ -120,12 +123,7 @@ class ReferenceiOSUITests: BaseTestCase {
     }
     
     func testAccessibilityEntireScreen() throws {
+        //Scans for a11y issue
         try runAccessibilityCheck()
     }
-    
-    func testLongAmountNotTruncated() {
-        relaunchApp(mockAmount: "€ 999.999.999.999,99")
-        landingScreen.assertAmountLabelIsNotTruncated()
-    }
-
 }

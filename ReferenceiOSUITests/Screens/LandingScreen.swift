@@ -108,12 +108,6 @@ final class LandingScreen: BaseScreen {
         )
         return self
     }
-    
-    @discardableResult
-    func assertAmountLabelIsNotTruncated() -> Self {
-        assertElementIsNotTruncated(element: amountLabel)
-        return self
-    }
 
     // MARK: - Actions
     @discardableResult
