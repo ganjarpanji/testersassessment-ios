@@ -18,12 +18,6 @@ class ViewController: UIViewController {
         
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         setupAccessibilityIdentifiers()
-    #if DEBUG
-        if let mockAmount = ProcessInfo.processInfo.environment["MOCK_AMOUNT"] {
-            label.text = mockAmount
-            return
-        }
-    #endif
     }
 
     private func setupAccessibilityIdentifiers() {
@@ -33,11 +27,30 @@ class ViewController: UIViewController {
 
     @IBAction func generate(_ sender: Any) {
         // Generate amount
-        let amount = Float.random(in: 100 ..< 99999999)
+        let amount = randomDecimal(in: 100...99999999)
+        let nsAmount = amount as NSDecimalNumber
 
-        // Format
-        if let formattedAmount = CurrencyHelper.format(amount: amount as NSNumber) {
+        // Format label
+        if let formattedAmount = CurrencyHelper.format(amount: nsAmount) {
             label.attributedText = CurrencyHelper.attributify(amount: formattedAmount)
+            label.accessibilityLabel = formattedAmount
+            label.adjustsFontForContentSizeCategory = true
         }
     }
+    
+    // Generate random decimal
+    func randomDecimal(in range: ClosedRange<Double>) -> Decimal {
+        let randomDouble = Double.random(in: range)
+        return Decimal(randomDouble)
+    }
+    
+    #if DEBUG
+        //Inject amount based on test data
+        func configureForSnapshotTest(with amount: Double) {
+            let decimalAmount = Decimal(amount)
+            if let formattedAmount = CurrencyHelper.format(amount: decimalAmount as NSDecimalNumber) {
+                label.attributedText = CurrencyHelper.attributify(amount: formattedAmount)
+            }
+        }
+    #endif
 }
