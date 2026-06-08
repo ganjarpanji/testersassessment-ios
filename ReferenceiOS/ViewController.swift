@@ -16,7 +16,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
         setupAccessibilityIdentifiers()
+    #if DEBUG
+        if let mockAmount = ProcessInfo.processInfo.environment["MOCK_AMOUNT"] {
+            label.text = mockAmount
+            return
+        }
+    #endif
     }
 
     private func setupAccessibilityIdentifiers() {

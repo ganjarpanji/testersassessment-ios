@@ -12,7 +12,8 @@ import XCTest
 class BaseScreen {
     
     let app: XCUIApplication
-    init(app: XCUIApplication = XCUIApplication()) {
+        
+    init(app: XCUIApplication) {
         self.app = app
     }
     
@@ -35,6 +36,16 @@ class BaseScreen {
             message: "Validation failed: Element '\(element)' is not hittable"
         )
         
+        return self
+    }
+    
+    func assertElementIsNotTruncated(element: XCUIElement) -> Self {
+        expect(element: element, status: .exist)
+        
+        XCTAssertTrue(
+            element.frame.width < UIScreen.main.bounds.width,
+            "Validation failed: Element '\(element)' appears to be truncated"
+        )
         return self
     }
     

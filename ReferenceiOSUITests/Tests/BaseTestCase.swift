@@ -23,17 +23,21 @@ class BaseTestCase: XCTestCase {
         let settingsApp = XCUIApplication(bundleIdentifier: SystemApps.settingsApp)
         settingsApp.launch()
         
-        // Pause the execution to let the app stay in background
-        Thread.sleep(forTimeInterval: seconds)
-        
-        // Bring the main application back to foreground
+        let expectation = XCTestExpectation(description: "Settings app in foreground")
+            _ = XCTWaiter.wait(for: [expectation], timeout: seconds)
+
         app.activate()
+        
+        let appRunning = NSPredicate(format: "state == %d", XCUIApplication.State.runningForeground.rawValue)
+        let appExpectation = XCTNSPredicateExpectation(predicate: appRunning, object: app)
+        _ = XCTWaiter.wait(for: [appExpectation], timeout: TestTimeouts.defaultTimeout)
     }
     
-    func launchApplication(withRegion region: String) {
+    func launchApplication(withLocale locale: TestLocale) {
         app.terminate()
-        app.launchArguments = [
-            "-AppleLocale", region
+        app.launchArguments += [
+            "-AppleLocale", locale.regionCode,
+            "-AppleLanguages", "(\(locale.languageCode))"
         ]
         app.launch()
     }
@@ -41,5 +45,20 @@ class BaseTestCase: XCTestCase {
     func relaunchApp() {
         app.terminate()
         app.launch()
+    }
+    
+    func relaunchApp(mockAmount: String) {
+        app.launchEnvironment["MOCK_AMOUNT"] = mockAmount
+        relaunchApp()
+    }
+    
+    func runAccessibilityCheck() throws {
+        if #available(iOS 17.0, *) {
+            try? app.performAccessibilityAudit(for: [.elementDetection, .dynamicType])
+        } else {
+            throw XCTSkip(
+                "Skipping accessibility test as it requires iOS 17.0 or later."
+            )
+        }
     }
 }

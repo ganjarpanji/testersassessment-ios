@@ -97,7 +97,7 @@ class ReferenceiOSUITests: BaseTestCase {
     
     func testAmountFormat_InDifferentRegion_ShouldRemainInEuroCurrency() {
         // Set locale to US
-        launchApplication(withRegion: TestLocale.US)
+        launchApplication(withLocale: TestLocale.usEnglish,)
 
         landingScreen
             .tapGenerateButton()
@@ -117,6 +117,15 @@ class ReferenceiOSUITests: BaseTestCase {
         landingScreen
             .assertHelloLabelIsDisplayed()
             .assertGenerateButtonIsDisplayed()
+    }
+    
+    func testAccessibilityEntireScreen() throws {
+        try runAccessibilityCheck()
+    }
+    
+    func testLongAmountNotTruncated() {
+        relaunchApp(mockAmount: "€ 999.999.999.999,99")
+        landingScreen.assertAmountLabelIsNotTruncated()
     }
 
 }
