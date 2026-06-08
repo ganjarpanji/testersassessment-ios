@@ -19,7 +19,6 @@ enum Simulator: String {
         }
     }
     
-    // 🌟 Tambahkan ini secara manual
     static var allCases: [Simulator] {
         return [.iPhoneSE, .iPhone13Pro, .iPhone13ProMax]
     }
