@@ -14,32 +14,112 @@
 # update_fastlane
 default_platform(:ios)
 
-platform :ios do
-  lane :ui_tests do
-    target_device = "iPhone 17 Pro"
-    target_os     = "latest"
-    xcresult_path = "./fastlane/test_output/ReferenceiOSUITests.test_result.xcresult"
+DEFAULT_DEVICE = "iPhone 17 Pro"
 
-    FileUtils.rm_rf("./test_output")
+platform :ios do
+  before_all do
+    FileUtils.rm_rf("./fastlane/test_output")
+  end
+
+  lane :run_all_tests do
+    #Execute unit test
+    unit_tests
+
+    # Execute UI test
+    ui_tests
+    
+    # Execute snapshot test
+    snapshot_tests
+  end
+  
+  # --- Lane UI Tests ---
+  lane :ui_tests do
+    output_dir = "./fastlane/test_output/ui_tests"
+    report_dir = "./test_output/ui_tests"
+    derived_dir = "./fastlane/derived_data_ui"
+    xcresult_path = "#{output_dir}/ReferenceiOSUITests.test_result.xcresult"
+
+    FileUtils.rm_rf(report_dir)
+    FileUtils.rm_rf(derived_dir)
 
     begin
       scan(
         scheme: "ReferenceiOSUITests",
         project: "ReferenceiOS.xcodeproj",
-        destination: "platform=iOS Simulator,name=#{target_device},OS=#{target_os}",
-        derived_data_path: "./fastlane/derived_data",
+        destination: "platform=iOS Simulator,name=#{DEFAULT_DEVICE}",
+        derived_data_path: derived_dir,
         result_bundle: true,
-        output_directory: "./fastlane/test_output",
+        output_directory: output_dir,
         clean: true,
         fail_build: false
       )
     ensure
+      # Generate HTML Report
       xchtmlreport(
         result_bundle_path: xcresult_path,
         binary_path: `which xchtmlreport`.strip
       )
+      sh("open #{report_dir}/index.html") unless ENV["CI"]
+    end
+  end
 
-      sh("open ./test_output/index.html") unless ENV["CI"]
+  # --- Lane Snapshot Tests ---
+  lane :snapshot_tests do
+    target_os     = "latest"
+    output_dir = "./fastlane/test_output/snapshot_tests"
+    report_dir = "./test_output/snapshot_tests"
+    xcresult_path = "#{output_dir}/ReferenceiOS.test_result.xcresult"
+
+    FileUtils.rm_rf(report_dir)
+
+    begin
+      scan(
+        scheme: "ReferenceiOS",
+        only_testing: ["ReferenceiOSSnapshotTests"],
+        destination: "platform=iOS Simulator,name=#{DEFAULT_DEVICE}",
+        derived_data_path: "./fastlane/derived_data_snapshot",
+        result_bundle: true,
+        output_directory: output_dir,
+        clean: true,
+        fail_build: false
+      )
+    ensure
+      # Generate HTML Report
+      xchtmlreport(
+        result_bundle_path: xcresult_path,
+        binary_path: `which xchtmlreport`.strip
+      )
+      sh("open #{report_dir}/index.html") unless ENV["CI"]
+    end
+  end
+
+  # --- Lane Unit Tests ---
+  lane :unit_tests do
+    report_dir = "./test_output/unit_tests"
+    output_dir = "./fastlane/test_output/unit_tests"
+    xcresult_path = "#{output_dir}/ReferenceiOS.test_result.xcresult"
+
+    FileUtils.rm_rf(output_dir)
+
+    begin
+      scan(
+        scheme: "ReferenceiOS",
+        only_testing: ["ReferenceiOSTests"],
+        destination: "platform=iOS Simulator,name=#{DEFAULT_DEVICE}",
+        derived_data_path: "./fastlane/derived_data_unit",
+        result_bundle: true,
+        output_directory: output_dir,
+        clean: true,
+        fail_build: true
+      )
+    ensure
+      # Generate HTML Report
+      xchtmlreport(
+        result_bundle_path: xcresult_path,
+        binary_path: `which xchtmlreport`.strip
+      )
+      
+      sh("open #{report_dir}/index.html") unless ENV["CI"]
     end
   end
 end

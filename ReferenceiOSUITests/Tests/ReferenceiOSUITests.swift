@@ -11,14 +11,18 @@ import XCTest
 /// UI Test for main screen of the apps (Landing Screen).
 /// Includes user interaction, changing background state, and device rotation.
 /// a11y check added as part of design guidelines validation.
-class ReferenceiOSUITests: BaseTestCase {
-    
+final class ReferenceiOSUITests: BaseTestCase {
+
+    private let tapCount = 10
+
     override func tearDown() {
-        XCUIDevice.shared.orientation = .portrait
+        // Reset shared device state to avoid cross-test interference.
+        XCUIDevice.shared.rotateToPortrait()
         super.tearDown()
     }
-    
-    // MARK: - Core Happy Path Tests
+
+    // MARK: - Core User Flows
+
     func testUIElements_OnFirstLaunch_ShouldBeVisibleAndHittable() {
         landingScreen
             .assertGenerateButtonIsDisplayed()
@@ -27,79 +31,80 @@ class ReferenceiOSUITests: BaseTestCase {
     }
 
     func testGenerateButton_WhenTapped_ShouldUpdateToRandomEuroAmount() {
-        // First tap & verification
+
+        // Arrange & Act
         landingScreen
             .tapGenerateButton()
             .assertHelloTextNotDisplayed()
             .assertAmountHasEuroCurrency()
-        
-        // Extract state for dynamic validation
+
+        // Capture state to verify the generated value actually changes.
         let previousAmount = landingScreen.getCurrentAmount()
-        
-        // Second tap & verification (ensuring the amount actually changes)
+
+        // Assert
         landingScreen
             .tapGenerateButton()
             .assertAmountHasEuroCurrency()
             .assertAmountIsUpdated(prevAmount: previousAmount)
     }
-    
+
     func testGenerateButton_WhenTappedRepeatedly_ShouldNotCrashAndKeepUpdating() {
-        // Tap the button 5 times continuously
-        for _ in 1...5 {
+
+        // Simulate repeated user interaction.
+        for _ in 1...tapCount {
             landingScreen.tapGenerateButton()
         }
-        
-        // Verify the final state
+
         landingScreen
             .assertAmountHasEuroCurrency()
     }
-    
+
     func testGenerateButton_WhenTapped_TitleShouldRemainUnchanged() {
-        // Verify title before tapping
+
         landingScreen
             .assertGenerateButtonHasTitle(TextConstants.generateButton)
 
-        // Tap and verify title is still unchanged
         landingScreen
             .tapGenerateButton()
             .assertGenerateButtonHasTitle(TextConstants.generateButton)
     }
-    
-    // MARK: - Device & System Integration Tests
+
+    // MARK: - Application Lifecycle & System Behaviour
+
     func testAppState_WhenRunInBackground_AmountShouldRemainUnchanged() {
-        // Generate the initial random amount
+
+        // Arrange
         landingScreen
             .tapGenerateButton()
             .assertAmountHasEuroCurrency()
-        
-        // Extract the generated amount string to compare later
-        let expectedAmountBeforeBackground = landingScreen.getCurrentAmount()
-        
-        // Send the application to the background
+
+        // Capture UI state before backgrounding.
+        let expectedAmount = landingScreen.getCurrentAmount()
+
+        // Act
         sendAppToBackground(seconds: 2.0)
-        
-        // Verify the app recovers and preserves the exact same data
+
+        // Assert
         landingScreen
             .assertAmountHasEuroCurrency()
             .assertHelloTextNotDisplayed()
-            .assertAmountRemains(expectedAmount: expectedAmountBeforeBackground)
+            .assertAmountRemains(expectedAmount: expectedAmount)
     }
-    
-    func testLayoutBehavior_WhenDeviceIsRotated_ShouldRemainFunctional() {
-        let device = XCUIDevice.shared
-        
-        // Rotate to landscape
-        device.orientation = .landscapeLeft
-        
-        // Generate amount
+
+    func testLayoutBehavior_WhenDeviceIsRotated_ShouldRemainUsable() {
+
+        // Validate the main user flow remains functional after orientation changes.
+        XCUIDevice.shared.rotateToLandscape()
+
         landingScreen
             .assertGenerateButtonIsHittable()
             .tapGenerateButton()
             .assertAmountHasEuroCurrency()
     }
-    
+
     func testAmountFormat_InDifferentRegion_ShouldRemainInEuroCurrency() {
-        // Set locale to US
+
+        // Verify formatting is independent from the device locale.
         launchApplication(withLocale: TestLocale.usEnglish)
 
         landingScreen
@@ -108,22 +113,25 @@ class ReferenceiOSUITests: BaseTestCase {
     }
 
     func testAmountLabel_AfterAppRelaunch_ShouldResetToHello() {
-        // Generate an amount first
+
+        // Arrange a non-default state.
         landingScreen
             .tapGenerateButton()
             .assertAmountHasEuroCurrency()
 
-        // Relaunch the app
+        // Verify a fresh app launch restores the initial UI state.
         relaunchApp()
 
-        // Verify the label resets back to "Hello"
         landingScreen
             .assertHelloLabelIsDisplayed()
             .assertGenerateButtonIsDisplayed()
     }
-    
+
+    // MARK: - Accessibility
+
     func testAccessibilityEntireScreen() throws {
-        //Scans for a11y issue
+
+        // Validate the screen against native accessibility audit.
         try runAccessibilityCheck()
     }
 }
