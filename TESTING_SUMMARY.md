@@ -109,7 +109,7 @@
 
 ## 8. Continuous Integration
 Purpose: Automate test execution on every pull request to ensure code quality and prevent regression before merging.
-
+GH Action: https://github.com/ganjarpanji/testersassessment-ios/actions
 Workflow: swift.yml
 * Implemented a dedicated CI workflow using GitHub Actions to align with shift-left testing
 * Ensure code quality and prevent regression before merging.
