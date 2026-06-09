@@ -25,6 +25,7 @@ class CurrencyHelper {
         
         let font = UIFont(name: "Helvetica", size: regularSize) ?? UIFont.systemFont(ofSize: regularSize)
         let fontDynamic = UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
+        
         let fontSuper = UIFont(name: "Helvetica", size: superscriptSize) ?? UIFont.systemFont(ofSize: superscriptSize)
         let fontSuperDynamic = UIFontMetrics(forTextStyle: .body).scaledFont(for: fontSuper)
         
@@ -34,6 +35,11 @@ class CurrencyHelper {
             .foregroundColor: UIColor.label
         ]
         let attString = NSMutableAttributedString(string: amount, attributes: baseAttributes)
+        
+        guard amount.count >= decimalCount else {
+            return attString
+        }
+        
         let superAttributes: [NSAttributedString.Key: Any] = [
             .font: fontSuperDynamic,
             .baselineOffset: (fontDynamic.pointSize - fontSuperDynamic.pointSize) - diff,
