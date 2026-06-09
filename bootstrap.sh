@@ -40,4 +40,4 @@ bundle install
 # Install Fastlane plugins
 bundle exec fastlane install_plugins
 
-echo "✅ Setup complete! Run 'bundle exec fastlane ui_tests' to run tests."
+echo "✅ Setup complete!"

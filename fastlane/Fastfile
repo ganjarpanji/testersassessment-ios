@@ -37,7 +37,7 @@ platform :ios do
     output_dir = "./fastlane/test_output/ui_tests"
     report_dir = "./test_output/ui_tests"
     derived_dir = "./fastlane/derived_data_ui"
-    xcresult_path = "#{output_dir}/ReferenceiOSUITests.test_result.xcresult"
+    xcresult_path = "#{output_dir}/ReferenceiOSUITests.xcresult"
 
     FileUtils.rm_rf(report_dir)
     FileUtils.rm_rf(derived_dir)
@@ -68,7 +68,7 @@ platform :ios do
     target_os     = "latest"
     output_dir = "./fastlane/test_output/snapshot_tests"
     report_dir = "./test_output/snapshot_tests"
-    xcresult_path = "#{output_dir}/ReferenceiOS.test_result.xcresult"
+    xcresult_path = "#{output_dir}/ReferenceiOS.xcresult"
 
     FileUtils.rm_rf(report_dir)
 
@@ -97,7 +97,7 @@ platform :ios do
   lane :unit_tests do
     report_dir = "./test_output/unit_tests"
     output_dir = "./fastlane/test_output/unit_tests"
-    xcresult_path = "#{output_dir}/ReferenceiOS.test_result.xcresult"
+    xcresult_path = "#{output_dir}/ReferenceiOS.xcresult"
 
     FileUtils.rm_rf(output_dir)
 
