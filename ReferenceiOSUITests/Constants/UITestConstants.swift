@@ -28,5 +28,17 @@ enum SystemApps {
 }
 
 enum TestLocale {
-    static let US = "en_US"
+    case usEnglish
+    
+    var regionCode: String {
+        switch self {
+        case .usEnglish:     return "en_US"
+        }
+    }
+    
+    var languageCode: String {
+        switch self {
+        case .usEnglish: return "en"
+        }
+    }
 }
