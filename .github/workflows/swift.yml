@@ -1,0 +1,45 @@
+name: "Test PR"
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.11'
+          bundler-cache: true
+          
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        run: |
+          chmod +x bootstrap.sh
+          ./bootstrap.sh
+
+      - name: Select specific Xcode version
+        run: sudo xcode-select -switch /Applications/Xcode_26.3.app/Contents/Developer
+
+      - name: Configure Git for private modules
+        run: |
+          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "git@github.com:"
+
+      - name: Create simulator
+        run: xcrun simctl create "iPhone 17 Pro" "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro" "com.apple.CoreSimulator.SimRuntime.iOS-26-0"
+
+      - name: Run all tests via Fastlane
+        run: bundle exec fastlane run_all_tests
+
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: fastlane/test_output/
+          retention-days: 7
