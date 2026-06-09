@@ -15,6 +15,10 @@
 		05D03C8A224BA0FD005F6F05 /* ReferenceiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D03C89224BA0FD005F6F05 /* ReferenceiOSUITests.swift */; };
 		05D03C98224BBCCC005F6F05 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D03C97224BBCCC005F6F05 /* CurrencyHelper.swift */; };
 		05D03C9A224BBDC2005F6F05 /* CurrencyHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D03C99224BBDC2005F6F05 /* CurrencyHelperTests.swift */; };
+		94651D752FD1C3800086FFC3 /* LandingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D742FD1C3800086FFC3 /* LandingScreen.swift */; };
+		94651D792FD1C4140086FFC3 /* BaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D782FD1C4140086FFC3 /* BaseScreen.swift */; };
+		94651D7C2FD1C6410086FFC3 /* UITestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D7B2FD1C6410086FFC3 /* UITestConstants.swift */; };
+		94651D7F2FD1CCF40086FFC3 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651D7E2FD1CCF40086FFC3 /* BaseTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		05D03C8B224BA0FD005F6F05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D03C97224BBCCC005F6F05 /* CurrencyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHelper.swift; sourceTree = "<group>"; };
 		05D03C99224BBDC2005F6F05 /* CurrencyHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHelperTests.swift; sourceTree = "<group>"; };
+		94651D742FD1C3800086FFC3 /* LandingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingScreen.swift; sourceTree = "<group>"; };
+		94651D782FD1C4140086FFC3 /* BaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
+		94651D7B2FD1C6410086FFC3 /* UITestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestConstants.swift; sourceTree = "<group>"; };
+		94651D7E2FD1CCF40086FFC3 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +130,38 @@
 		05D03C88224BA0FD005F6F05 /* ReferenceiOSUITests */ = {
 			isa = PBXGroup;
 			children = (
-				05D03C89224BA0FD005F6F05 /* ReferenceiOSUITests.swift */,
+				94651D7D2FD1CC910086FFC3 /* Tests */,
+				94651D7A2FD1C5FD0086FFC3 /* Constants */,
+				94651D712FD1C3480086FFC3 /* Screens */,
 				05D03C8B224BA0FD005F6F05 /* Info.plist */,
 			);
 			path = ReferenceiOSUITests;
+			sourceTree = "<group>";
+		};
+		94651D712FD1C3480086FFC3 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				94651D742FD1C3800086FFC3 /* LandingScreen.swift */,
+				94651D782FD1C4140086FFC3 /* BaseScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		94651D7A2FD1C5FD0086FFC3 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				94651D7B2FD1C6410086FFC3 /* UITestConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		94651D7D2FD1CC910086FFC3 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				05D03C89224BA0FD005F6F05 /* ReferenceiOSUITests.swift */,
+				94651D7E2FD1CCF40086FFC3 /* BaseTestCase.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +313,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94651D752FD1C3800086FFC3 /* LandingScreen.swift in Sources */,
 				05D03C8A224BA0FD005F6F05 /* ReferenceiOSUITests.swift in Sources */,
+				94651D7F2FD1CCF40086FFC3 /* BaseTestCase.swift in Sources */,
+				94651D792FD1C4140086FFC3 /* BaseScreen.swift in Sources */,
+				94651D7C2FD1C6410086FFC3 /* UITestConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

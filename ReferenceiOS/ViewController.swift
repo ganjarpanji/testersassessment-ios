@@ -10,12 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var label: UILabel! {
-        didSet {
-            label.accessibilityIdentifier = "label"
-        }
-    }
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var button: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupAccessibilityIdentifiers()
+    }
+
+    private func setupAccessibilityIdentifiers() {
+        label.accessibilityIdentifier = "landingScreen.amountLabel"
+        button.accessibilityIdentifier = "landingScreen.generateButton"
+    }
 
     @IBAction func generate(_ sender: Any) {
         // Generate amount
