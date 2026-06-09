@@ -16,7 +16,8 @@ extension XCTestCase {
         _ viewController: UIViewController,
         testName: String,
         on devices: [Simulator] = Simulator.allCases,
-        isDarkMode: Bool = false
+        isDarkMode: Bool = false,
+        file: StaticString = #file // Ini adalah "magic" Swift
     ) {
         viewController.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
         
@@ -25,9 +26,9 @@ extension XCTestCase {
         
         devices.forEach { simulator in
             assertSnapshot(
-                matching: viewController,
+                of: viewController,
                 as: .image(on: simulator.config, traits: isDarkMode ? UITraitCollection(userInterfaceStyle: .dark) : .init()),
-                testName: "\(testName)\(modeSuffix)_\(simulator.rawValue)"
+                file: file, testName: "\(testName)\(modeSuffix)_\(simulator.rawValue)"
             )
         }
     }

@@ -1,6 +1,23 @@
 #!/bin/bash
 set -e
 
+if ! command -v bundle &> /dev/null; then
+    echo "Error: Bundler not found, please run 'gem install bundler'"
+    exit 1
+fi
+
+# Ensure ruby version is correct
+REQUIRED_RUBY=$(cat .ruby-version)
+CURRENT_RUBY=$(ruby -e 'puts RUBY_VERSION')
+
+if [[ "$CURRENT_RUBY" != "$REQUIRED_RUBY"* ]]; then
+    echo "Warning: Your ruby version ($CURRENT_RUBY) does not match with .ruby-version ($REQUIRED_RUBY)."
+fi
+
+# Install dependency
+echo "Installing gem..."
+bundle install
+
 # Install Homebrew if missing
 if [[ ! -f /opt/homebrew/bin/brew ]] && [[ ! -f /usr/local/bin/brew ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
