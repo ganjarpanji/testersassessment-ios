@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Ensure the button title scales correctly with Dynamic Type
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         setupAccessibilityIdentifiers()
     }
@@ -26,11 +27,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func generate(_ sender: Any) {
-        // Generate amount
         let amount = randomDecimal(in: 100...99999999)
         let nsAmount = amount as NSDecimalNumber
 
-        // Format label
+        // Apply formatting and accessibility properties to the amount label
         if let formattedAmount = CurrencyHelper.format(amount: nsAmount) {
             label.attributedText = CurrencyHelper.attributify(amount: formattedAmount)
             label.accessibilityLabel = formattedAmount
@@ -38,19 +38,19 @@ class ViewController: UIViewController {
         }
     }
     
-    // Generate random decimal
+    /// Generates a random decimal value within a specified range for UI display purposes
     func randomDecimal(in range: ClosedRange<Double>) -> Decimal {
         let randomDouble = Double.random(in: range)
         return Decimal(randomDouble)
     }
     
     #if DEBUG
-        // Inject amount based on test data
-        func configureForSnapshotTest(with amount: Double) {
-            let decimalAmount = Decimal(amount)
-            if let formattedAmount = CurrencyHelper.format(amount: decimalAmount as NSDecimalNumber) {
-                label.attributedText = CurrencyHelper.attributify(amount: formattedAmount)
-            }
+    /// Injects a specific amount into the UI for snapshot testing consistency
+    func configureForSnapshotTest(with amount: Double) {
+        let decimalAmount = Decimal(amount)
+        if let formattedAmount = CurrencyHelper.format(amount: decimalAmount as NSDecimalNumber) {
+            label.attributedText = CurrencyHelper.attributify(amount: formattedAmount)
         }
+    }
     #endif
 }

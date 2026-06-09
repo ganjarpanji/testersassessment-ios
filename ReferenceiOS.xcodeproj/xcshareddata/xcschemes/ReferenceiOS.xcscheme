@@ -58,6 +58,17 @@
                ReferencedContainer = "container:ReferenceiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "94D99CC82FD7D02E00163771"
+               BuildableName = "ReferenceiOSSnapshotTests.xctest"
+               BlueprintName = "ReferenceiOSSnapshotTests"
+               ReferencedContainer = "container:ReferenceiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
