@@ -18,16 +18,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Select specific Xcode version
-        run: sudo xcode-select -switch /Applications/Xcode_26.3.app/Contents/Developer
-
-      - name: Create simulator
-        run: xcrun simctl create "iPhone 17 Pro" "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro" "com.apple.CoreSimulator.SimRuntime.iOS-26-0"
-
       - name: Setup environment
         run: |
           chmod +x bootstrap.sh
           ./bootstrap.sh
+
+      - name: Select specific Xcode version
+        run: sudo xcode-select -switch /Applications/Xcode_26.3.app/Contents/Developer
+
+      - name: Configure Git for private modules
+        run: |
+          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "git@github.com:"
+
+      - name: Create simulator
+        run: xcrun simctl create "iPhone 17 Pro" "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro" "com.apple.CoreSimulator.SimRuntime.iOS-26-0"
 
       - name: Run all tests via Fastlane
         run: bundle exec fastlane run_all_tests
