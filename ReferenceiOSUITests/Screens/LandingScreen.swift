@@ -26,6 +26,14 @@ class LandingScreen {
         XCTAssertTrue(mainLabel.exists, "Hello text is not exist")
         XCTAssertEqual(mainLabel.label, "Hello", "Label is not equal to Hello!")
     }
+    
+    func assertHelloTextIsNotDisplayed() {
+        XCTAssertNotEqual(mainLabel.label, "Hello", "Label is equal to Hello!")
+    }
+   
+    func assertAmountIsGenerated() {
+        XCTAssertTrue(mainLabel.label.contains("€"))
+    }
 
     func assertButtonIsDisplayed() {
         XCTAssertTrue(generateButton.exists, "Generate button is not exist")
