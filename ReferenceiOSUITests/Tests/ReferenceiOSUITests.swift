@@ -34,4 +34,13 @@ class ReferenceiOSUITests: XCTestCase {
         landingScreen.assertHelloTextIsNotDisplayed()
         landingScreen.assertAmountIsGenerated()
     }
+    
+    /// Verifies that the Generate flow remains usable after repeated taps
+    /// and continues to display a euro formatted amount.
+    func testGenerateButton_WhenTappedMultipleTimes_ShouldAlwaysGenerateAmount() {
+         for _ in 1 ... 10 {
+             landingScreen.tapGenerateButton()
+         }
+        landingScreen.assertAmountIsGenerated()
+     }
 }
