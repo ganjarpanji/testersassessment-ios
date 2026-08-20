@@ -15,7 +15,11 @@ class ViewController: UIViewController {
             label.accessibilityIdentifier = "label"
         }
     }
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button: UIButton! {
+        didSet {
+            button.accessibilityIdentifier = "generateButton"
+        }
+    }
 
     @IBAction func generate(_ sender: Any) {
         // Generate amount

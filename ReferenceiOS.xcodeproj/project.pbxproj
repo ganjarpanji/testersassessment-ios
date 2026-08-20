@@ -15,6 +15,7 @@
 		05D03C8A224BA0FD005F6F05 /* ReferenceiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D03C89224BA0FD005F6F05 /* ReferenceiOSUITests.swift */; };
 		05D03C98224BBCCC005F6F05 /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D03C97224BBCCC005F6F05 /* CurrencyHelper.swift */; };
 		05D03C9A224BBDC2005F6F05 /* CurrencyHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D03C99224BBDC2005F6F05 /* CurrencyHelperTests.swift */; };
+		9431E308303653C100C7C855 /* LandingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9431E307303653BC00C7C855 /* LandingScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		05D03C8B224BA0FD005F6F05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D03C97224BBCCC005F6F05 /* CurrencyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHelper.swift; sourceTree = "<group>"; };
 		05D03C99224BBDC2005F6F05 /* CurrencyHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHelperTests.swift; sourceTree = "<group>"; };
+		9431E307303653BC00C7C855 /* LandingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +124,27 @@
 		05D03C88224BA0FD005F6F05 /* ReferenceiOSUITests */ = {
 			isa = PBXGroup;
 			children = (
-				05D03C89224BA0FD005F6F05 /* ReferenceiOSUITests.swift */,
+				9431E306303653B000C7C855 /* Tests */,
+				9431E3033036538200C7C855 /* Screens */,
 				05D03C8B224BA0FD005F6F05 /* Info.plist */,
 			);
 			path = ReferenceiOSUITests;
+			sourceTree = "<group>";
+		};
+		9431E3033036538200C7C855 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9431E307303653BC00C7C855 /* LandingScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		9431E306303653B000C7C855 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				05D03C89224BA0FD005F6F05 /* ReferenceiOSUITests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D03C8A224BA0FD005F6F05 /* ReferenceiOSUITests.swift in Sources */,
+				9431E308303653C100C7C855 /* LandingScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
