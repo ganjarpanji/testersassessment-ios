@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
     @IBOutlet weak var button: UIButton! {
         didSet {
-            button.accessibilityIdentifier = "generate_button"
+            button.accessibilityIdentifier = "generateButton"
         }
     }
 

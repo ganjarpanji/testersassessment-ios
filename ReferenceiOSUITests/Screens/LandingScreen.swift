@@ -1,6 +1,6 @@
 //
 //  LandingScreen.swift
-//  ReferenceiOS
+//  ReferenceiOSUITests
 //
 //  Created by Ganjar Manggala on 19/08/2026.
 //  Copyright © 2026 ABN AMRO. All rights reserved.
@@ -10,11 +10,15 @@ import XCTest
 
 class LandingScreen {
     
-    let app = XCUIApplication()
+    private let app: XCUIApplication
+
+    init(app: XCUIApplication) {
+        self.app = app
+    }
     
     // MARK: - Elements
     private lazy var mainLabel = app.staticTexts["label"]
-    private lazy var generateButton = app.buttons["generate_button"]
+    private lazy var generateButton = app.buttons["generateButton"]
     
     // MARK: - Actions
     func tapGenerateButton() {
@@ -23,21 +27,26 @@ class LandingScreen {
     
     // MARK: - Assertions
     func assertHelloTextIsDisplayed() {
-        XCTAssertTrue(mainLabel.exists, "Hello text is not exist")
-        XCTAssertEqual(mainLabel.label, "Hello", "Label is not equal to Hello!")
+        XCTAssertTrue(mainLabel.exists, "Hello text does not exist")
+        XCTAssertEqual(mainLabel.label, "Hello", "Label should display Hello!")
     }
     
     func assertHelloTextIsNotDisplayed() {
-        XCTAssertNotEqual(mainLabel.label, "Hello", "Label is equal to Hello!")
+        XCTAssertNotEqual(mainLabel.label, "Hello", "Label should no longer display Hello!")
     }
    
-    func assertAmountIsGenerated() {
-        XCTAssertTrue(mainLabel.label.contains("€"))
+    func assertEuroFormattedAmountIsDisplayed() {
+        XCTAssertTrue(mainLabel.label.contains("€"), "Generated amount does not contain € symbol")
     }
 
     func assertButtonIsDisplayed() {
-        XCTAssertTrue(generateButton.exists, "Generate button is not exist")
+        XCTAssertTrue(generateButton.exists, "Generate button does not exist")
         XCTAssertTrue(generateButton.isHittable, "Generate button is not hittable")
+    }
+    
+    // MARK: - Helpers
+    var currentAmount: String {
+        mainLabel.label
     }
 }
 
