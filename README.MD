@@ -94,11 +94,11 @@ bundle install
 
 Run the unit tests:
 ```bash
-bundle exec fastlane unit_test
+bundle exec fastlane test_unit
 ```
 Run the UI tests:
 ```bash
-bundle exec fastlane ui_test
+bundle exec fastlane test_ui
 ```
 Run both unit and UI tests:
 ```bash
