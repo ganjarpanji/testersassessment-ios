@@ -28,10 +28,11 @@ This file specifies which Ruby dependencies (gems) are needed for our app.
 
 This is where tha magic happens.
 
-Two lanes were added to automate test execution:
+Three lanes were added to automate test execution:
 
-- `unit_test` - runs the unit tests.
-- `ui_test` - runs the UI tests.
+- `test_unit` - runs the unit tests.
+- `test_ui` - runs the UI tests.
+- `test` - runs the UI tests.
 
 # Test approach
 
