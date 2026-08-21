@@ -17,7 +17,7 @@ default_platform(:ios)
 
 platform :ios do
   desc "Run unit tests"
-  lane :unit_test do
+  lane :test_unit do
     run_tests(
       scheme: "ReferenceiOS",
       only_testing: "ReferenceiOSTests"
@@ -25,7 +25,7 @@ platform :ios do
   end
 
   desc "Run UI tests"
-  lane :ui_test do
+  lane :test_ui do
     run_tests(
       scheme: "ReferenceiOSUITests",
       only_testing: "ReferenceiOSUITests"
