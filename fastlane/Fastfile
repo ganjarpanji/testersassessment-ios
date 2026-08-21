@@ -33,7 +33,7 @@ platform :ios do
   end
 
   lane :test do
-    unit_test
-    ui_test
+    test_unit
+    test_ui
   end
 end
