@@ -1,0 +1,9 @@
+xcuserdata/
+*.xcuserstate
+.DS_Store
+DerivedData/
+build/
+
+# fastlane
+fastlane/report.xml
+fastlane/test_output/
