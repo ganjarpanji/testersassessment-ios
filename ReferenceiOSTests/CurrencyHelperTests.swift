@@ -49,7 +49,7 @@ class CurrencyHelperTests: XCTestCase {
         let number: NSNumber = -122.50
         let result = CurrencyHelper.format(amount: number)
 
-        XCTAssertEqual(result, "-€ 122,50")
+        XCTAssertEqual(result, "€ -122,50")
     }
 
     // MARK: - Attributed string
