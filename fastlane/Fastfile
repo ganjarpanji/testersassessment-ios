@@ -28,7 +28,8 @@ platform :ios do
   lane :test_ui do
     run_tests(
       scheme: "ReferenceiOSUITests",
-      only_testing: "ReferenceiOSUITests"
+      only_testing: "ReferenceiOSUITests",
+      result_bundle: true
     )
   end
 
