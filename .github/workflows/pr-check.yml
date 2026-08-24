@@ -5,8 +5,8 @@ on:
     branches: [ "main" ]
 
   permissions:
-  contents: read
-  checks: write
+    contents: read
+    checks: write
 
 jobs:
   pr-check:
