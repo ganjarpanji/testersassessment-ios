@@ -27,7 +27,10 @@ class LandingScreen {
     
     // MARK: - Assertions
     func assertHelloTextIsDisplayed() {
-        XCTAssertTrue(mainLabel.exists, "Hello text does not exist")
+        XCTAssertTrue(
+            mainLabel.waitForExistence(timeout: 10),
+            "Hello text does not exist"
+        )
         XCTAssertEqual(mainLabel.label, "Hello", "Label should display Hello!")
     }
     
@@ -40,7 +43,10 @@ class LandingScreen {
     }
 
     func assertButtonIsDisplayed() {
-        XCTAssertTrue(generateButton.exists, "Generate button does not exist")
+        XCTAssertTrue(
+            generateButton.waitForExistence(timeout: 10),
+            "Generate button does not exist"
+        )
         XCTAssertTrue(generateButton.isHittable, "Generate button is not hittable")
     }
     
