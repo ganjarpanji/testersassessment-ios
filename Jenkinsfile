@@ -1,3 +1,8 @@
+//NOTE
+//
+// Build, artifact distribution, Nexus, HockeyApp and TestFlight
+// stages from the original pipeline intentionally excluded from the assessment scope.
+
 // This import is require so that we can skip a stage
 import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
 
